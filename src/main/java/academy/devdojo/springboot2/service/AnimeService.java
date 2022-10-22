@@ -2,7 +2,6 @@ package academy.devdojo.springboot2.service;
 
 import academy.devdojo.springboot2.domain.Anime;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -34,5 +33,14 @@ public class AnimeService {
         anime.setId(ThreadLocalRandom.current().nextLong(3,10));
         animes.add(anime);
         return anime;
+    }
+
+    public void delete(Long id){
+       animes.remove(findById(id));
+    }
+
+    public void replace(Anime anime){
+        delete(anime.getId());
+        animes.add(anime);
     }
 }
